@@ -36,7 +36,7 @@ def predict(user_image):
     data_batch = data.map(process_image).batch(32)
     predicted_probabilities = loaded_full_data_model.predict(data_batch)
     predicted_label = unique_breeds[np.argmax(predicted_probabilities)]
-    st.write(predicted_label)
+    st.write(f"{predicted_label} with {np.max(predicted_probabilities) * 100:.2f}% probability")
     st.image(user_image, caption='Uploaded Image.', use_column_width=True)
 
 
