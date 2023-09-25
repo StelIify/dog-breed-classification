@@ -8,12 +8,10 @@ from matplotlib import image
 labels = pd.read_csv("data/labels.csv")
 unique_breeds = np.unique(labels.breed)
 
-print(unique_breeds)
-
 MODEL_PATH = "data/models/20210226-004258-full-data-mobilenetv2-Adam.h5"
 
 
-@st.cache_data
+@st.cache_resource
 def load_model(model_path=MODEL_PATH):
     model = tf.keras.models.load_model(model_path, custom_objects={"KerasLayer": hub.KerasLayer})
     return model
